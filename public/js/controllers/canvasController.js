@@ -40,7 +40,9 @@ angular.module('myApp').controller('canvasController', function () {
         y += dy * ballRadius/2;
         snake.unshift([x, y]);
         for (let i = 0; i < food.length; i++) {
-            if ((food[i][0] - (ballRadius / 2)) > x && (food[i][1] + (ballRadius / 2)) > x && (food[i][1] - (ballRadius / 2)) > y && (food[i][1] + (ballRadius / 2)) > y) {
+            console.log(x + (ballRadius / 2) > food[i][0] );
+            if ((x - (ballRadius / 2)) < food[i][0] && food[i][0] < (x + (ballRadius / 2))&&
+                (y - (ballRadius / 2)) < food[i][1]&& food[i][1] < (y + (ballRadius / 2))) {
                 ballRadius+=ballRadius/Math.pow(ballRadius,2);
                 console.log(food[i],food.splice(i, 1));
                 flag = true;
