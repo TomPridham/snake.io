@@ -36,15 +36,27 @@ angular.module('myApp').controller('canvasController', function () {
     const draw = () => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        x += dx * ballRadius/2;
-        y += dy * ballRadius/2;
+        x += dx * ballRadius / 2;
+        y += dy * ballRadius / 2;
+        if (x < 0 ) {
+            x = canvas.width;
+        }
+        if (x > canvas.width) {
+            x = 0;
+        }
+        if (y < 0) {
+            y = canvas.height;
+        }
+        if (y > canvas.height) {
+            y = 0;
+        }
         snake.unshift([x, y]);
         for (let i = 0; i < food.length; i++) {
-            console.log(x + (ballRadius / 2) > food[i][0] );
-            if ((x - (ballRadius / 2)) < food[i][0] && food[i][0] < (x + (ballRadius / 2))&&
-                (y - (ballRadius / 2)) < food[i][1]&& food[i][1] < (y + (ballRadius / 2))) {
-                ballRadius+=ballRadius/Math.pow(ballRadius,2);
-                console.log(food[i],food.splice(i, 1));
+            console.log(x + (ballRadius / 2) > food[i][0]);
+            if ((x - (ballRadius / 2)) < food[i][0] && food[i][0] < (x + (ballRadius / 2)) &&
+                (y - (ballRadius / 2)) < food[i][1] && food[i][1] < (y + (ballRadius / 2))) {
+                ballRadius += ballRadius / Math.pow(ballRadius, 2);
+                console.log(food[i], food.splice(i, 1));
                 flag = true;
                 break;
             }
